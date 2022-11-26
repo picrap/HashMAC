@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashMAC", "HashMAC\HashMAC.csproj", "{CE9CB767-6B1F-48D9-9252-170E3EB64A3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashMACTest", "HashMACTest\HashMACTest.csproj", "{C0747D9C-A042-4249-B160-C0C769F942D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{CE9CB767-6B1F-48D9-9252-170E3EB64A3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE9CB767-6B1F-48D9-9252-170E3EB64A3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE9CB767-6B1F-48D9-9252-170E3EB64A3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0747D9C-A042-4249-B160-C0C769F942D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0747D9C-A042-4249-B160-C0C769F942D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0747D9C-A042-4249-B160-C0C769F942D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0747D9C-A042-4249-B160-C0C769F942D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
