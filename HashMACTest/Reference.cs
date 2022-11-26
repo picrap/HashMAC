@@ -4,6 +4,8 @@ using NUnit.Framework;
 
 namespace HashMACTest;
 
+// https://codesigningstore.com/hash-algorithm-comparison
+
 [TestFixture]
 public class Reference
 {
