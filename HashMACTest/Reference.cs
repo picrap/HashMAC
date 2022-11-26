@@ -1,10 +1,10 @@
-using System.Security.Cryptography;
-using System.Security.Cryptography.X509Certificates;
+﻿using System.Security.Cryptography;
 using NUnit.Framework;
 
 namespace HashMACTest;
 
 // https://codesigningstore.com/hash-algorithm-comparison
+// hashes input block size:  https://en.wikipedia.org/wiki/Secure_Hash_Algorithms
 
 [TestFixture]
 public class Reference
