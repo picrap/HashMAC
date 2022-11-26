@@ -22,4 +22,8 @@
 		<Description>An extensible implementation of HMAC (RFC 2104). Compatible with .NET implementation.</Description>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <None Include="..\README.md" Link="README.md" />
+	</ItemGroup>
+
 </Project>
