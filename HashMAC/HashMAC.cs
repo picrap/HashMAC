@@ -13,11 +13,11 @@ public class HashMAC : HMAC
     private byte[] _buffer;
     private int _bufferSize;
 
-    public HashMAC(byte[] key, HashAlgorithm hashAlgorithm, int? blockSize = null)
+    public HashMAC(byte[] key, HashAlgorithm hashAlgorithm, int? blockSizeBytes = null)
     {
         _hashAlgorithm = hashAlgorithm;
         Key = (byte[])key.Clone();
-        BlockSizeBytes = blockSize ?? hashAlgorithm.InputBlockSize;
+        BlockSizeBytes = blockSizeBytes ?? hashAlgorithm.InputBlockSize;
         Initialize();
     }
 
