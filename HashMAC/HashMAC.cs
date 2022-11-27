@@ -8,9 +8,10 @@ public class HashMAC : HMAC
     protected HashAlgorithm HashAlgorithm { get; }
 
     public override int HashSize => HashAlgorithm.HashSize;
+
     protected int BlockSizeBytes { get; }
 
-    protected byte[] NoByte = new byte[0];
+    protected readonly byte[] NoByte = new byte[0];
 
     public static HashMAC Create(byte[] key, HashAlgorithm hashAlgorithm, int? blockSizeBytes = null)
     {
