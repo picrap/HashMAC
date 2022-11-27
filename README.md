@@ -1,7 +1,7 @@
 ﻿# HashMAC
 
 A flexible [HMAC implementation](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.hmac), allowing to specify any `HashAlgorithm` as input.  
-Available as a [![NuGet](http://img.shields.io/nuget/v/HashMAC.svg?style=flat-square)](https://www.nuget.org/packages/HashMAC) package.
+Available as a [![NuGet](https://img.shields.io/nuget/v/HashMAC.svg?style=flat-square)](https://www.nuget.org/packages/HashMAC) package.
 
 # How to use it
 
