@@ -5,17 +5,23 @@ namespace HashMAC;
 
 public class HashMAC : HMAC
 {
-    private readonly HashAlgorithm _hashAlgorithm;
+    protected HashAlgorithm HashAlgorithm { get; }
 
-    public override int HashSize => _hashAlgorithm.HashSize;
-    private int BlockSizeBytes { get; }
+    public override int HashSize => HashAlgorithm.HashSize;
+    protected int BlockSizeBytes { get; }
 
-    private byte[] _buffer;
-    private int _bufferSize;
+    protected byte[] NoByte = new byte[0];
+
+    public static HashMAC Create(byte[] key, HashAlgorithm hashAlgorithm, int? blockSizeBytes = null)
+    {
+        if (hashAlgorithm.InputBlockSize == 1)
+            return new HashMAC(key, hashAlgorithm, blockSizeBytes);
+        return new BufferedHashMAC(key, hashAlgorithm, blockSizeBytes);
+    }
 
     public HashMAC(byte[] key, HashAlgorithm hashAlgorithm, int? blockSizeBytes = null)
     {
-        _hashAlgorithm = hashAlgorithm;
+        HashAlgorithm = hashAlgorithm;
         Key = (byte[])key.Clone();
         BlockSizeBytes = blockSizeBytes ?? hashAlgorithm.InputBlockSize;
         Initialize();
@@ -23,17 +29,15 @@ public class HashMAC : HMAC
 
     protected override void Dispose(bool disposing)
     {
-        _hashAlgorithm.Dispose();
+        HashAlgorithm.Dispose();
         base.Dispose(disposing);
     }
 
     public override void Initialize()
     {
         var ipad = GetIPad(); // must be computed before hash initialization
-        _hashAlgorithm.Initialize();
-        _hashAlgorithm.TransformBlock(ipad, 0, ipad.Length, null, 0);
-        _buffer = new byte[BlockSizeBytes];
-        _bufferSize = 0;
+        HashAlgorithm.Initialize();
+        HashAlgorithm.TransformBlock(ipad, 0, ipad.Length, null, 0);
     }
 
     protected virtual byte[] GetIPad() => GetIPad(GetHashableKey());
@@ -56,38 +60,30 @@ public class HashMAC : HMAC
 
     protected override void HashCore(byte[] rgb, int ib, int cb)
     {
-        while (cb > 0)
-        {
-            var left = Math.Min(cb, BlockSizeBytes - _bufferSize);
-            Buffer.BlockCopy(rgb, ib, _buffer, _bufferSize, left);
-            _bufferSize += left;
-            if (_bufferSize > BlockSizeBytes)
-            {
-                _hashAlgorithm.TransformBlock(_buffer, 0, _bufferSize, null, 0);
-                _bufferSize = 0;
-            }
-
-            cb -= left;
-            ib += left;
-        }
+        HashAlgorithm.TransformBlock(rgb, ib, cb, null, 0);
     }
 
     private byte[] GetHashableKey()
     {
         if (Key.Length <= BlockSizeBytes)
             return Key;
-        return _hashAlgorithm.ComputeHash(Key);
+        return HashAlgorithm.ComputeHash(Key);
+    }
+
+    protected virtual void HashLast()
+    {
+        HashAlgorithm.TransformFinalBlock(NoByte, 0, 0);
     }
 
     protected override byte[] HashFinal()
     {
-        _hashAlgorithm.TransformFinalBlock(_buffer, 0, _bufferSize);
-        var hash = _hashAlgorithm.Hash;
-        _hashAlgorithm.Initialize();
+        HashLast();
+        var hash = HashAlgorithm.Hash;
+        HashAlgorithm.Initialize();
         var opad = GetOPad();
         var final = new byte[opad.Length + hash.Length];
         Buffer.BlockCopy(opad, 0, final, 0, opad.Length);
         Buffer.BlockCopy(hash, 0, final, opad.Length, hash.Length);
-        return _hashAlgorithm.ComputeHash(final);
+        return HashAlgorithm.ComputeHash(final);
     }
 }
