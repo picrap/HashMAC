@@ -11,7 +11,7 @@ public class HashMAC : HMAC
 
     protected int BlockSizeBytes { get; }
 
-    protected readonly byte[] NoByte = new byte[0];
+    protected static readonly byte[] NoByte = new byte[0];
 
     public static HashMAC Create(byte[] key, HashAlgorithm hashAlgorithm, int? blockSizeBytes = null)
     {
