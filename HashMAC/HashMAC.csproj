@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net6.0;netstandard2.0;net40-client</TargetFrameworks>
+		<TargetFrameworks>net6.0;netstandard2.0;net40-client;net8.0</TargetFrameworks>
 		<LangVersion>10</LangVersion>
 		<ImplicitUsings>disable</ImplicitUsings>
 		<Nullable>enable</Nullable>
@@ -9,7 +9,7 @@
 		<Title>HashMAC</Title>
 		<PackageProjectUrl>https://github.com/picrap/HashMAC</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/picrap/HashMAC.git</RepositoryUrl>
-		<AssemblyVersion>0.9</AssemblyVersion>
+		<AssemblyVersion>1.0</AssemblyVersion>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<IncludeSymbols>True</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
